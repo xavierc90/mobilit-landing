@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   Variables & thème clair / sombre
+========================================= */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,8 +27,52 @@
   }
 }
 
+/* =========================================
+   Reset + Mapbox Fullscreen + Font global
+========================================= */
+
+html,
+body {
+  height: 100%;          /* nécessaire pour h-screen et Mapbox */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;      /* sécurité pour Next.js */
+}
+
+main {
+  min-height: 100vh;      /* pour éviter les coupures sur la carte */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* === Marker Mobilit custom === */
+
+.mobilit-marker {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #0ea5e9;                 /* bleu vif */
+  border: 3px solid #ffffff;           /* contour blanc */
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.4); /* halo bleu */
+  transform: translateY(-13px);        /* remonte légèrement le point */
+}
+
+.mobilit-marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: #ffffff;                 /* petit point blanc au centre */
 }
